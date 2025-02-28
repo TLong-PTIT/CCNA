@@ -24,11 +24,11 @@ Kiểm tra:
 
 Bảng định tuyến của các Router: 
 
-![image](https://github.com/user-attachments/assets/24bb831f-e877-49d1-b8c6-a27081b2adad)
+![image](https://github.com/user-attachments/assets/2e965795-6039-45ff-8757-5188e9c3abd0)
 
-![image](https://github.com/user-attachments/assets/caa2db74-da57-48f6-afee-4a549276b0f3)
+![image](https://github.com/user-attachments/assets/4126cc72-78ad-4478-b37b-b119129c356d)
 
-![image](https://github.com/user-attachments/assets/892b9361-6b3b-490e-b127-73f9b606197f)
+![image](https://github.com/user-attachments/assets/20f42151-2205-4eab-8f85-971a9d1afea5)
 
 Từ mỗi Router đã đi đến được tất cả các subnet không kết nối trực tiếp với mình
 
