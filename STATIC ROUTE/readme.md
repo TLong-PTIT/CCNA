@@ -21,7 +21,9 @@ Thực hiện cấu hình các route đi đến các subnet này trên R2:
 ![image](https://github.com/user-attachments/assets/913d176b-df13-4870-8b66-77047ce779bb)
 
 Kiểm tra:
+
 Bảng định tuyến của các Router: 
+
 ![image](https://github.com/user-attachments/assets/24bb831f-e877-49d1-b8c6-a27081b2adad)
 
 ![image](https://github.com/user-attachments/assets/caa2db74-da57-48f6-afee-4a549276b0f3)
