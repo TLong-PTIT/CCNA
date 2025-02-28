@@ -32,13 +32,13 @@ Bảng định tuyến của các Router:
 
 Từ mỗi Router đã đi đến được tất cả các subnet không kết nối trực tiếp với mình
 
-![image](https://github.com/user-attachments/assets/96c56f01-7dfc-42a8-a785-82146d361ae6)
+![image](https://github.com/user-attachments/assets/8c8bfe35-d328-415e-b364-cd4f85e64d93)
 
-![image](https://github.com/user-attachments/assets/c05b5581-02c5-4b7a-9e0f-3946067065ec)
+![image](https://github.com/user-attachments/assets/f04f84b6-2f52-4592-8d6f-05f638761455)
 
-![image](https://github.com/user-attachments/assets/9c8f92d4-a44b-4c16-9bfe-a737f2571773)
+![image](https://github.com/user-attachments/assets/65f4db41-0385-4498-83ef-78c97ec30f08)
 
-![image](https://github.com/user-attachments/assets/4d79918b-3561-436a-ac0d-d1eea6128ee7)
+
 
 
 
