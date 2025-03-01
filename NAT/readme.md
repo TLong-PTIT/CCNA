@@ -1,98 +1,94 @@
-![image](https://github.com/user-attachments/assets/e4154a22-5877-4f52-bf6b-9606b670bffc)
----
-Dưới đây là hướng dẫn từng bước để cấu hình NAT theo bài lab mà bạn đã chia sẻ.
+![image](https://github.com/user-attachments/assets/b434594d-a0ec-4f60-b98a-655defe9900f)
 
 ---
 
 ### **Bước 1: Cấu hình địa chỉ IP**
 Cấu hình địa chỉ IP cho các thiết bị theo sơ đồ trong bài lab.
 
-#### **Cấu hình trên Router R1 (Router nội bộ)**
-```bash
-R1(config)# interface g0/0
-R1(config-if)# ip address 192.168.0.1 255.255.255.0
-R1(config-if)# no shutdown
+Để giả lập việc cấp phát dải IP 200.0.0.0/29 cho mô hình đang xét, sử dụng một static route trên Router ISP:
 
-R1(config)# interface g0/1
-R1(config-if)# ip address 200.0.0.2 255.255.255.252
-R1(config-if)# no shutdown
-```
+![image](https://github.com/user-attachments/assets/8fc7e94a-05d5-4c45-a535-698fd651c1c9)
 
-#### **Cấu hình trên Router R2 (Router ISP)**
-```bash
-R2(config)# interface g0/0
-R2(config-if)# ip address 200.0.0.1 255.255.255.252
-R2(config-if)# no shutdown
+Cấu hình default route từ R2 chỉ về Router ISP:
 
-R2(config)# interface g0/1
-R2(config-if)# ip address 210.0.0.1 255.255.255.0
-R2(config-if)# no shutdown
-```
+![image](https://github.com/user-attachments/assets/539b50b2-e7ac-4a9f-8f92-91e096e8bee5)
 
 ---
 
-### **Bước 2: Cấu hình Static Route**
-Router R1 cần có tuyến tĩnh để đi ra ngoài, và Router R2 cần biết đường quay lại mạng nội bộ.
+### **Bước 2: Cấu hình Static NAT**
 
-#### **Cấu hình trên Router R1**
-```bash
-R1(config)# ip route 0.0.0.0 0.0.0.0 200.0.0.1
-```
+Cấu hình:
 
-#### **Cấu hình trên Router R2**
-```bash
-R2(config)# ip route 192.168.0.0 255.255.255.0 200.0.0.2
-```
+![image](https://github.com/user-attachments/assets/74fd05e1-c8e5-472e-940d-86bc7256adcc)
 
----
+Kiểm tra:
 
-### **Bước 3: Cấu hình Static NAT**
-Static NAT giúp ánh xạ một địa chỉ IP nội bộ với một địa chỉ IP công khai.
+Bảng NAT của R2:
 
-#### **Cấu hình trên Router R1**
-```bash
-R1(config)# ip nat inside source static 192.168.0.10 200.0.0.4
-R1(config)# interface g0/0
-R1(config-if)# ip nat inside
-R1(config-if)# exit
+![image](https://github.com/user-attachments/assets/aef95a75-98b6-427a-a407-5392f5066608)
 
-R1(config)# interface g0/1
-R1(config-if)# ip nat outside
-R1(config-if)# exit
-```
+Từ server, có thể đi được Internet:
+
+![image](https://github.com/user-attachments/assets/b466584e-9ccb-4393-aa2e-c7fc11055b96)
+
+
+Từ Internet, có thể đi đến được server thông qua địa chỉ 200.0.0.1 của:
+
+![image](https://github.com/user-attachments/assets/a8522286-c40f-4690-b33e-8639b9f80911)
 
 ---
 
-### **Bước 4: Cấu hình Dynamic NAT**
-Dynamic NAT giúp ánh xạ một dải địa chỉ IP nội bộ với một nhóm địa chỉ IP công khai.
+### **Bước 3: Cấu hình Dynamic NAT**
 
-#### **Cấu hình trên Router R1**
-```bash
-R1(config)# access-list 1 permit 192.168.0.0 0.0.0.255
-R1(config)# ip nat pool NAT-POOL 200.0.0.5 200.0.0.10 netmask 255.255.255.248
-R1(config)# ip nat inside source list 1 pool NAT-POOL
-```
+Cấu hình:
 
----
+Trên R2:
 
-### **Bước 5: Cấu hình PAT (NAT Overload)**
-PAT cho phép nhiều thiết bị trong mạng nội bộ sử dụng chung một địa chỉ IP công khai.
+![image](https://github.com/user-attachments/assets/e18924d1-aebb-4aae-9ceb-eba80f00e190)
 
-#### **Cấu hình trên Router R1**
-```bash
-R1(config)# access-list 1 permit 192.168.0.0 0.0.0.255
-R1(config)# ip nat inside source list 1 interface g0/1 overload
-```
+Kiểm tra:
+
+Thực hiện ping đi Internet:
+
+![image](https://github.com/user-attachments/assets/f022433a-2fda-4264-9c64-6f3843c5c7a5)
+
+Bảng NAT trên R2:
+
+![image](https://github.com/user-attachments/assets/b58143f7-1f16-4301-8313-7c20212ed46d)
 
 ---
 
-### **Bước 6: Kiểm tra NAT**
-Sau khi cấu hình xong, bạn có thể kiểm tra NAT bằng các lệnh sau:
+### **Bước 4: Cấu hình NAT overload**
 
-```bash
-R1# show ip nat translations
-R1# show ip nat statistics
-R1# debug ip nat
-```
+Cấu hình:
 
-Nếu bạn có bất kỳ vấn đề nào trong quá trình cấu hình, hãy cho mình biết để mình hỗ trợ bạn nhé! 🚀
+Trên R2:
+
+![image](https://github.com/user-attachments/assets/5b5f4322-3007-47ed-9ef0-d808f3bf15f9)
+
+Kiểm tra:
+
+Kiểm tra rằng các địa chỉ khác nhau thuộc mạng 192.168.2.0/24 đi được Internet:
+
+![image](https://github.com/user-attachments/assets/c37abb40-969a-463d-bdd7-6ea5069d3937)
+
+Bảng NAT trên R2: 
+
+![image](https://github.com/user-attachments/assets/981de28e-6f18-4eff-9ee7-1bb8621b304c)
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
