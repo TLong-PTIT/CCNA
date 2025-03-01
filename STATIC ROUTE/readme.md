@@ -1,11 +1,12 @@
 ![image](https://github.com/user-attachments/assets/355ef06a-f7ca-4d5f-8fd4-97895faeffa8)
 
 ---
-Bước 1: Kết nối và cấu hình cơ bản
+
+### **Bước 1: Cấu hình địa chỉ IP**
 
 ---
 
-Bước 2: Cấu hình static route
+### **Bước 2: Cấu hình Static Route**
 
 Cấu hình
 
