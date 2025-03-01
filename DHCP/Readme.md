@@ -6,7 +6,7 @@
 
 ### **Bước 2: Cấu hình DHCP**
 
-Trường hợp 1: R1 và R2 làm DHCP server
+### **Trường hợp 1: R1 và R2 làm DHCP server**
 
 Trên R1:
 
@@ -26,7 +26,7 @@ Thực hiện cấu hình DHCP một cách tương tự trên R2:
 
 ![image](https://github.com/user-attachments/assets/344e5b7e-a9a7-43d7-bea9-17934da6fe30)
 
-Trường hợp 2: R1 làm DHCP server, R2 làm DHCP relay agent
+### **Trường hợp 2: R1 làm DHCP server, R2 làm DHCP relay agent**
 
 Xóa pool LAN2 đã tạo trên R2 ở trường hợp 1:
 
