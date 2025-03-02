@@ -80,7 +80,7 @@ Bảng neighbor trên 3 Router thể hiện kết quả bầu chọn:
 
 ![image](https://github.com/user-attachments/assets/04379855-ad51-4ac2-89b2-9bbf4380c659)
 
-![image](https://github.com/user-attachments/assets/b85c1cfb-9501-4ca3-8e73-92617cd50908)
+![image](https://github.com/user-attachments/assets/8f4995c3-32dd-4b1f-916b-fc74cc027434)
 
 Trên kết nối multiaccess giữa R1 và R3: Đảm bảo R3 luôn là DR.
 
@@ -91,6 +91,28 @@ Cấu hình:
 Thực hiện reset tiến trình OSPF sau đó hiển thị bảng Neighbor của R1 và R3
 
 Bảng neighbor trên 3 Router thể hiện kết quả bầu chọn:
+
+![image](https://github.com/user-attachments/assets/f76a0af4-909f-421e-a90b-41877011d278)
+
+![image](https://github.com/user-attachments/assets/b758fd4b-0f78-4646-ad8d-daecd0106662)
+
+---
+
+### **Bước 5:Điều chỉnh cost**
+
+Ta thấy từ R2 đến Loopback 0 của R1 có thể theo 2 đường, qua Serial 0/0/0 và qua Fast Ethernet 0/0, tổng cost theo đường Serial là 65 (1 của Loopback 0 R1 + 64 của Serial R2), tổng cost theo đường FastEthernet là 2 (1 của Loopback 0 R1 + 1 của FastEthernet R2) nên R2 chọn hướng cost nhỏ để đi.
+
+Cấu hình:
+
+![image](https://github.com/user-attachments/assets/751f1d8d-694d-4a2f-9e2d-75eefb3fc575)
+
+Kiểm tra:
+
+Bảng định tuyến của R2 cho thấy đường đi đã được hiệu chỉnh lại theo yêu cầu:
+
+![image](https://github.com/user-attachments/assets/d424d58e-5f61-4d98-9201-aecbbd196065)
+
+---
 
 
 
